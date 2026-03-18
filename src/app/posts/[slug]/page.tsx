@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
 import TagBadge from '@/components/post/TagBadge'
+import ViewCounter from '@/components/post/ViewCounter'
 import { compileMdx } from '@/lib/mdx'
 import { getAllSlugs, getPostBySlug } from '@/lib/posts'
 
@@ -91,12 +92,13 @@ export default async function PostPage({ params }: Params) {
         {/* タイトル */}
         <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-900">{post.title}</h1>
 
-        {/* 日付 */}
+        {/* 日付・閲覧数 */}
         <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-400">
           <time dateTime={post.publishedAt}>公開: {formattedDate}</time>
           {formattedUpdatedAt && (
             <time dateTime={post.updatedAt}>更新: {formattedUpdatedAt}</time>
           )}
+          <ViewCounter slug={post.slug} />
         </div>
 
         {/* タグ一覧 */}
