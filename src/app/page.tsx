@@ -1,9 +1,10 @@
-import PostCard from '@/components/post/PostCard'
+import PostList from '@/components/post/PostList'
 import { getAllPostMetas } from '@/lib/posts'
 
 /**
  * トップページ（記事一覧）。
  * 公開済みの全記事を新しい順でカード形式に表示する。
+ * Load More ボタンで追加表示する。
  */
 export default function HomePage() {
   /** 公開済み記事メタデータ一覧（新しい順） */
@@ -21,12 +22,7 @@ export default function HomePage() {
       {posts.length === 0 ? (
         <p className="py-20 text-center text-gray-400">まだ記事がありません。</p>
       ) : (
-        /* 記事カードグリッド */
-        <div className="grid gap-6 sm:grid-cols-2">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <PostList posts={posts} />
       )}
     </div>
   )

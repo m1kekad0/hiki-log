@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react'
 
+/** localStorage に保存するキーのプレフィックス */
+const VIEWED_KEY_PREFIX = 'viewed:'
+
 /** ViewCounter コンポーネントの Props */
 type ViewCounterProps = {
   /** 対象記事のスラッグ */
@@ -10,25 +13,39 @@ type ViewCounterProps = {
 
 /**
  * 記事の閲覧数を表示するクライアントコンポーネント。
- * マウント時に API を呼び出して閲覧数をインクリメントし、結果を表示する。
+ * localStorage を使って同一ブラウザからの重複カウントを防ぐ。
+ * - 未訪問の場合: POST でカウントをインクリメントして localStorage に記録
+ * - 訪問済みの場合: GET で現在のカウントを取得するのみ（インクリメントしない）
  */
 export default function ViewCounter({ slug }: ViewCounterProps) {
   /** 閲覧数（null = ローディング中） */
   const [views, setViews] = useState<number | null>(null)
 
   useEffect(() => {
-    /** 閲覧数をインクリメントして取得する */
-    async function incrementViews() {
+    async function fetchViews() {
       try {
-        const res = await fetch(`/api/views/${slug}`, { method: 'POST' })
-        const data = await res.json()
-        setViews(data.views)
+        /** localStorage に訪問済みフラグがあるか確認 */
+        const viewedKey = `${VIEWED_KEY_PREFIX}${slug}`
+        const alreadyViewed = localStorage.getItem(viewedKey) === '1'
+
+        if (alreadyViewed) {
+          /** 訪問済み: カウントを増やさず現在値を取得 */
+          const res = await fetch(`/api/views/${slug}`)
+          const data = await res.json()
+          setViews(data.views)
+        } else {
+          /** 未訪問: カウントをインクリメントして訪問済みとして記録 */
+          const res = await fetch(`/api/views/${slug}`, { method: 'POST' })
+          const data = await res.json()
+          setViews(data.views)
+          localStorage.setItem(viewedKey, '1')
+        }
       } catch {
         // API エラー時は表示しない
       }
     }
 
-    incrementViews()
+    fetchViews()
   }, [slug])
 
   /* ローディング中または取得失敗時は何も表示しない */

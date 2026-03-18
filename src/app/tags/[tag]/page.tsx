@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import PostCard from '@/components/post/PostCard'
+import PostList from '@/components/post/PostList'
 import { getAllTags, getPostMetasByTag } from '@/lib/posts'
 
 import type { Metadata } from 'next'
@@ -56,12 +56,7 @@ export default async function TagPage({ params }: Params) {
         <p className="text-sm text-gray-400">{posts.length} 件の記事</p>
       </div>
 
-      {/* 記事カードグリッド */}
-      <div className="grid gap-6 sm:grid-cols-2">
-        {posts.map((post) => (
-          <PostCard key={post.slug} post={post} />
-        ))}
-      </div>
+      <PostList posts={posts} />
     </div>
   )
 }
