@@ -11,10 +11,12 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.15",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "16.1.7",
     "next-mdx-remote": "^6.0.0",
+    "notion-to-md": "^3.1.9",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "rehype-pretty-code": "^0.14.3",
@@ -27,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.7",
     "prettier": "^3.8.1",
