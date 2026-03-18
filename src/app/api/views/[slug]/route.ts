@@ -1,5 +1,11 @@
-import { kv } from '@vercel/kv'
 import { NextResponse } from 'next/server'
+import Redis from 'ioredis'
+
+/**
+ * Redis クライアントのシングルトン。
+ * REDIS_URL 環境変数で接続先を指定する。
+ */
+const redis = new Redis(process.env.REDIS_URL!)
 
 /** ルートパラメータの型 */
 type Params = {
@@ -15,8 +21,8 @@ type Params = {
  */
 export async function GET(_req: Request, { params }: Params) {
   const { slug } = await params
-  const views = (await kv.get<number>(`views:${slug}`)) ?? 0
-  return NextResponse.json({ views })
+  const views = (await redis.get(`views:${slug}`)) ?? 0
+  return NextResponse.json({ views: Number(views) })
 }
 
 /**
@@ -30,6 +36,6 @@ export async function GET(_req: Request, { params }: Params) {
 export async function POST(_req: Request, { params }: Params) {
   const { slug } = await params
   /** インクリメント後の閲覧数 */
-  const views = await kv.incr(`views:${slug}`)
+  const views = await redis.incr(`views:${slug}`)
   return NextResponse.json({ views })
 }

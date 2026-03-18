@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
-    "@vercel/kv": "^3.0.0",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
+    "ioredis": "^5.10.0",
     "next": "16.1.7",
     "next-mdx-remote": "^6.0.0",
     "notion-to-md": "^3.1.9",
