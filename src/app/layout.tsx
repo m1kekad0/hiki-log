@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import ThemeProvider from '@/components/layout/ThemeProvider'
 
 import './globals.css'
 
@@ -51,11 +52,14 @@ type RootLayoutProps = {
  */
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ja">
+    /* suppressHydrationWarning はダークモードのハイドレーション不一致を抑制するために必要 */
+    <html lang="ja" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
-        <main className="mx-auto min-h-screen max-w-4xl px-4 py-10">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main className="mx-auto min-h-screen max-w-4xl px-4 py-10">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )

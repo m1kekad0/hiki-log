@@ -4,7 +4,7 @@
  */
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-indigo-100 bg-white py-8 text-center text-sm text-gray-400">
+    <footer className="mt-20 border-t border-indigo-100 bg-white py-8 text-center text-sm text-gray-400 dark:border-indigo-950 dark:bg-gray-950 dark:text-gray-500">
       <p>© {new Date().getFullYear()} 引きこもりエンジニアの徒然ログ</p>
     </footer>
   )

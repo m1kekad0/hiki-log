@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* next-themes が <html class="dark"> を付与するため、クラスベースのダークモードを使用する */
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --background: #f8f7ff;
   --foreground: #1a1a2e;
@@ -7,6 +10,18 @@
   --accent: #6366f1;
   --accent-light: #e0e7ff;
   --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+/* ダークモード用 CSS 変数 */
+.dark {
+  --background: #0f0f1a;
+  --foreground: #e2e2f0;
+  --card: #1a1a2e;
+  --accent: #818cf8;
+  --accent-light: #1e1b4b;
+  --muted: #9ca3af;
+  --border: #2d2d4e;
 }
 
 @theme inline {
@@ -16,6 +31,7 @@
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-muted: var(--muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -99,7 +115,7 @@ body {
 }
 
 .prose hr {
-  border-color: #e5e7eb;
+  border-color: var(--border);
   margin: 2em 0;
 }
 
@@ -111,7 +127,7 @@ body {
 
 .prose th,
 .prose td {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   padding: 0.5em 0.75em;
   text-align: left;
 }
@@ -134,7 +150,7 @@ body {
 
 .prose code:not(pre code) {
   background: var(--accent-light);
-  color: #4f46e5;
+  color: var(--accent);
   padding: 0.15em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;

@@ -52,7 +52,7 @@ export default function ViewCounter({ slug }: ViewCounterProps) {
   if (views === null) return null
 
   return (
-    <span className="flex items-center gap-1 text-xs text-gray-400">
+    <span className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-3.5 w-3.5"

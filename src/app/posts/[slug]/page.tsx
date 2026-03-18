@@ -6,7 +6,7 @@ import { ja } from 'date-fns/locale'
 import TagBadge from '@/components/post/TagBadge'
 import ViewCounter from '@/components/post/ViewCounter'
 import { compileMdx } from '@/lib/mdx'
-import { getAllSlugs, getPostBySlug } from '@/lib/posts'
+import { getAllPostMetas, getPostBySlug } from '@/lib/posts'
 
 import type { Metadata } from 'next'
 
@@ -17,10 +17,10 @@ type Params = {
 
 /**
  * ビルド時に静的生成するスラッグ一覧を返す。
- * content/posts 内の全記事を対象にする。
+ * published: true の公開済み記事のみを対象とし、下書きはビルド対象から除外する。
  */
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }))
+  return getAllPostMetas().map(({ slug }) => ({ slug }))
 }
 
 /**
@@ -84,16 +84,16 @@ export default async function PostPage({ params }: Params) {
       <header className="mb-10">
         {/* カテゴリ */}
         {post.category && (
-          <p className="mb-3 text-sm font-semibold tracking-widest text-indigo-500 uppercase">
+          <p className="mb-3 text-sm font-semibold tracking-widest text-indigo-500 uppercase dark:text-indigo-400">
             {post.category}
           </p>
         )}
 
         {/* タイトル */}
-        <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-900">{post.title}</h1>
+        <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-900 dark:text-gray-100">{post.title}</h1>
 
         {/* 日付・閲覧数 */}
-        <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-400">
+        <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-400 dark:text-gray-500">
           <time dateTime={post.publishedAt}>公開: {formattedDate}</time>
           {formattedUpdatedAt && (
             <time dateTime={post.updatedAt}>更新: {formattedUpdatedAt}</time>
@@ -110,7 +110,7 @@ export default async function PostPage({ params }: Params) {
           </div>
         )}
 
-        <hr className="mt-8 border-indigo-100" />
+        <hr className="mt-8 border-indigo-100 dark:border-indigo-950" />
       </header>
 
       {/* 記事本文 */}

@@ -50,7 +50,7 @@ export default function PostList({ posts }: PostListProps) {
         <div className="mt-10 flex flex-col items-center gap-2">
           <button
             onClick={handleLoadMore}
-            className="rounded-full border border-indigo-200 bg-white px-8 py-2.5 text-sm font-medium text-indigo-600 transition hover:border-indigo-400 hover:bg-indigo-50"
+            className="rounded-full border border-indigo-200 bg-white px-8 py-2.5 text-sm font-medium text-indigo-600 transition hover:border-indigo-400 hover:bg-indigo-50 dark:border-indigo-800 dark:bg-gray-900 dark:text-indigo-400 dark:hover:border-indigo-600 dark:hover:bg-gray-800"
           >
             もっと見る（残り {posts.length - displayCount} 件）
           </button>

@@ -41,7 +41,7 @@ export default function SearchBox() {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="記事を検索..."
         aria-label="記事を検索"
-        className="w-48 rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+        className="w-48 rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-900"
       />
       <button
         type="submit"

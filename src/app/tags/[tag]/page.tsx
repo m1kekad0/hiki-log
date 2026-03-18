@@ -48,12 +48,12 @@ export default async function TagPage({ params }: Params) {
     <div>
       {/* ページヘッダー */}
       <div className="mb-10">
-        <p className="mb-1 text-sm text-gray-400">タグ</p>
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">
-          <span className="text-indigo-500">#</span>
+        <p className="mb-1 text-sm text-gray-400 dark:text-gray-500">タグ</p>
+        <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
+          <span className="text-indigo-500 dark:text-indigo-400">#</span>
           {decoded}
         </h1>
-        <p className="text-sm text-gray-400">{posts.length} 件の記事</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">{posts.length} 件の記事</p>
       </div>
 
       <PostList posts={posts} />

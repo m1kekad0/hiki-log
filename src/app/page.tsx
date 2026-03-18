@@ -14,13 +14,13 @@ export default function HomePage() {
     <div>
       {/* ページヘッダー */}
       <div className="mb-10">
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">記事一覧</h1>
-        <p className="text-sm text-gray-400">{posts.length} 件の記事</p>
+        <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-gray-100">記事一覧</h1>
+        <p className="text-sm text-gray-400 dark:text-gray-500">{posts.length} 件の記事</p>
       </div>
 
       {/* 記事が 0 件のときの表示 */}
       {posts.length === 0 ? (
-        <p className="py-20 text-center text-gray-400">まだ記事がありません。</p>
+        <p className="py-20 text-center text-gray-400 dark:text-gray-500">まだ記事がありません。</p>
       ) : (
         <PostList posts={posts} />
       )}

@@ -48,9 +48,9 @@ export default async function CategoryPage({ params }: Params) {
     <div>
       {/* ページヘッダー */}
       <div className="mb-10">
-        <p className="mb-1 text-sm text-gray-400">カテゴリ</p>
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">{decoded}</h1>
-        <p className="text-sm text-gray-400">{posts.length} 件の記事</p>
+        <p className="mb-1 text-sm text-gray-400 dark:text-gray-500">カテゴリ</p>
+        <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-gray-100">{decoded}</h1>
+        <p className="text-sm text-gray-400 dark:text-gray-500">{posts.length} 件の記事</p>
       </div>
 
       <PostList posts={posts} />
