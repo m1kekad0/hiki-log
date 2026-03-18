@@ -18,13 +18,26 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+/** サイト URL（OGP・sitemap の絶対 URL 生成に使用） */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3001'
+
 /** サイト全体のデフォルトメタデータ */
 export const metadata: Metadata = {
+  /** OGP・canonical URL の基底 URL */
+  metadataBase: new URL(siteUrl),
   title: {
     default: '引きこもりエンジニアの徒然ログ',
     template: '%s | 引きこもりエンジニアの徒然ログ',
   },
   description: '技術系の記事を自由気ままに書き残す個人ブログです。',
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+    siteName: '引きこもりエンジニアの徒然ログ',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 }
 
 /** ルートレイアウトの Props */
