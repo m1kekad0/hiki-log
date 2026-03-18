@@ -1,13 +1,16 @@
 import Link from 'next/link'
+import { Suspense } from 'react'
+
+import SearchBox from '@/components/search/SearchBox'
 
 /**
  * サイト共通ヘッダーコンポーネント。
- * ブログタイトルとナビゲーションリンクを表示する。
+ * ブログタイトル・ナビゲーション・検索ボックスを表示する。
  */
 export default function Header() {
   return (
     <header className="border-b border-indigo-100 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
+      <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 px-4 py-4">
         {/* ブログタイトル */}
         <Link href="/" className="group flex items-center gap-2">
           <span className="text-2xl">🏠</span>
@@ -16,15 +19,22 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* ナビゲーション */}
-        <nav className="flex items-center gap-6 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-indigo-600 transition-colors">
-            記事一覧
-          </Link>
-          <Link href="/about" className="hover:text-indigo-600 transition-colors">
-            About
-          </Link>
-        </nav>
+        {/* ナビゲーション + 検索ボックス */}
+        <div className="flex items-center gap-5">
+          <nav className="flex items-center gap-5 text-sm font-medium text-gray-600">
+            <Link href="/" className="transition-colors hover:text-indigo-600">
+              記事一覧
+            </Link>
+            <Link href="/about" className="transition-colors hover:text-indigo-600">
+              About
+            </Link>
+          </nav>
+
+          {/* useSearchParams を使うため Suspense でラップ */}
+          <Suspense fallback={null}>
+            <SearchBox />
+          </Suspense>
+        </div>
       </div>
     </header>
   )

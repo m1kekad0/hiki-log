@@ -100,3 +100,38 @@ export function getAllCategories(): string[] {
   const categorySet = new Set(metas.map((meta) => meta.category).filter(Boolean))
   return Array.from(categorySet).sort()
 }
+
+/**
+ * 指定タグを含む記事メタデータ一覧を返す。
+ * 公開日の降順でソートされる。
+ *
+ * @param tag - 絞り込むタグ名
+ */
+export function getPostMetasByTag(tag: string): PostMeta[] {
+  return getAllPostMetas().filter((meta) => meta.tags.includes(tag))
+}
+
+/**
+ * 指定カテゴリの記事メタデータ一覧を返す。
+ * 公開日の降順でソートされる。
+ *
+ * @param category - 絞り込むカテゴリ名
+ */
+export function getPostMetasByCategory(category: string): PostMeta[] {
+  return getAllPostMetas().filter((meta) => meta.category === category)
+}
+
+/**
+ * 全記事の検索用データ（slug・title・summary・tags）を返す。
+ * クライアントサイド検索のインデックスとして使用する。
+ */
+export function getSearchIndex(): Pick<PostMeta, 'slug' | 'title' | 'summary' | 'tags' | 'category' | 'publishedAt'>[] {
+  return getAllPostMetas().map(({ slug, title, summary, tags, category, publishedAt }) => ({
+    slug,
+    title,
+    summary,
+    tags,
+    category,
+    publishedAt,
+  }))
+}
