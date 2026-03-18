@@ -63,5 +63,5 @@ published: true
 しばらくはAWSの資格試験はお休みし、秋の「応用情報技術者試験」に向けて緩やかに準備を進めつつ、それまではAntigravityやClaude CodeといったAIツールとの共闘を楽しみながら、本来の技術アウトプットに専念したいと考えています 。
 
 
-![image.png](（画像は省略）)
+![](/images/aws-dva-c02-exam-log.png)
 
