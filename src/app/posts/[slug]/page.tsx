@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
+import CommentSection from '@/components/post/CommentSection'
 import TableOfContents from '@/components/post/TableOfContents'
 import TagBadge from '@/components/post/TagBadge'
 import ViewCounter from '@/components/post/ViewCounter'
@@ -150,6 +151,9 @@ export default async function PostPage({ params }: Params) {
 
           {/* 記事本文 */}
           <div className="prose">{content}</div>
+
+          {/* コメントセクション（'use client' + mounted フラグにより hydration 前は非表示） */}
+          <CommentSection slug={post.slug} />
         </article>
 
         {/*
