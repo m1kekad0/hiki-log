@@ -12,13 +12,17 @@
 **パターン**: ルートセグメントに対応したディレクトリ構造
 ```
 src/app/
-  layout.tsx          # ルートレイアウト（Header・Footer・ThemeProvider）
-  page.tsx            # トップページ（記事一覧）
-  posts/[slug]/       # 記事詳細
-  tags/[tag]/         # タグ別一覧
-  categories/[category]/  # カテゴリ別一覧
-  search/             # 検索結果
-  api/views/[slug]/   # 閲覧数 API Route
+  layout.tsx                      # ルートレイアウト（Header・Footer・ThemeProvider）
+  page.tsx                        # トップページ（記事一覧）
+  opengraph-image.tsx             # サイト共通 OGP 画像（Next.js ImageResponse）
+  sitemap.ts                      # sitemap.xml 自動生成
+  robots.ts                       # robots.txt 自動生成
+  posts/[slug]/                   # 記事詳細
+  posts/[slug]/opengraph-image.tsx  # 記事別 OGP 画像
+  tags/[tag]/                     # タグ別一覧
+  categories/[category]/          # カテゴリ別一覧
+  search/                         # 検索結果
+  api/views/[slug]/               # 閲覧数 API Route
 ```
 
 ### コンポーネント層
